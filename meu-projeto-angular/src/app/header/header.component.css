@@ -31,6 +31,7 @@
 
 .main-header__menu a {
   padding: 10px 10px;
+  border-radius: 20px;
   color: var(--gray);
   font-weight: 400;
   font-size: 22px;
