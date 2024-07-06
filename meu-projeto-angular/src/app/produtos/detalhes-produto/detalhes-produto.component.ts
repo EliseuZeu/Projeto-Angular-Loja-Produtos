@@ -1,7 +1,7 @@
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IProduto } from '../../produtos';
 import { ProdutosService } from './../../produtos.service';
-import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-detalhes-produto',
@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetalhesProdutoComponent implements OnInit {
   produto: IProduto | undefined;
+  quantidade = 1;
 
   constructor(
   private ProdutosService: ProdutosService,
