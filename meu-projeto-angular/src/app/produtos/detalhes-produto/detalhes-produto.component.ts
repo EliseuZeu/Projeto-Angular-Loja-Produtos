@@ -1,8 +1,10 @@
+import { CarrinhoService } from './../../carrinho.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NotificacaoService } from '../../notificacao.service';
-import { IProduto } from '../../produtos';
+import { IProduto, IProdutoCarrinho } from '../../produtos';
 import { ProdutosService } from './../../produtos.service';
+import { privateDecrypt } from 'crypto';
 
 @Component({
   selector: 'app-detalhes-produto',
@@ -16,8 +18,9 @@ export class DetalhesProdutoComponent implements OnInit {
   constructor(
   private ProdutosService: ProdutosService,
   private route: ActivatedRoute,
-  private notificacaoService: NotificacaoService
- ){}
+  private notificacaoService: NotificacaoService,
+  private CarrinhoService: CarrinhoService
+){}
 
  ngOnInit(): void {
      const routeParams = this.route.snapshot.paramMap;
@@ -26,6 +29,12 @@ export class DetalhesProdutoComponent implements OnInit {
  }
 
  adicionarAoCarrinho() {
-      this.notificacaoService.notificar("O produto foi adicionado ao carrinho");
- }
+    this.notificacaoService.notificar("O produto foi adicionado ao carrinho");
+    const produto: IProdutoCarrinho = {
+      ...this.produto!,
+      quantidade: this.quantidade
+    }
+    this.CarrinhoService.adicionarAoCarrinho(produto)
+  }
+
 }
