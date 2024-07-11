@@ -26,6 +26,6 @@ export class DetalhesProdutoComponent implements OnInit {
  }
 
  adicionarAoCarrinho() {
-      
+      this.notificacaoService.notificar("O produto foi adicionado ao carrinho");
  }
 }
